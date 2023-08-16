@@ -23,9 +23,9 @@ class Actuator : public QObject
 {
     Q_OBJECT
 public:
-    Actuator(QObject* parent, const QString& label, float min, float max, float defaultValue, int function, bool isMotor)
+    Actuator(QObject* parent, const QString& label, float min, float max, float defaultValue, int function, bool isMotor, bool isBidirectional)
         : QObject(parent), _label(label), _min(min), _max(max), _defaultValue(defaultValue), _function(function),
-          _isMotor(isMotor) {}
+          _isMotor(isMotor), _isBidirectional(isBidirectional) {}
 
     Q_PROPERTY(QString label              READ label                             CONSTANT)
     Q_PROPERTY(float min                  READ min                               CONSTANT)
@@ -33,6 +33,7 @@ public:
     Q_PROPERTY(float defaultValue         READ defaultValue                      CONSTANT)
     Q_PROPERTY(int function               READ function                          CONSTANT)
     Q_PROPERTY(bool isMotor               READ isMotor                           CONSTANT)
+    Q_PROPERTY(bool isBidirectional       READ isBidirectional                   CONSTANT)
 
     const QString& label() const { return _label; }
     float min() const { return _min; }
@@ -40,6 +41,7 @@ public:
     float defaultValue() const { return _defaultValue; }
     int function() const { return _function; }
     bool isMotor() const { return _isMotor; }
+    bool isBidirectional() const { return _isBidirectional; }
 
 private:
     const QString _label;
@@ -48,6 +50,7 @@ private:
     const float _defaultValue;
     const int _function;
     const bool _isMotor;
+    const bool _isBidirectional;
 };
 
 class ActuatorTest : public QObject
